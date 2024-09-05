@@ -14,48 +14,146 @@ Resource Resource
 
 ```terraform
 resource "opal_resource" "my_resource" {
-    admin_owner_id = "7c86c85d-0651-43e2-a748-d69d658418e8"
-            app_id = "f454d283-ca87-4a8a-bdbb-df212eca5353"
-            description = "This resource represents AWS IAM role \"SupportUser\"."
-            name = "my-mongo-db"
-            request_configurations = {
+  admin_owner_id = "7c86c85d-0651-43e2-a748-d69d658418e8"
+  app_id         = "f454d283-ca87-4a8a-bdbb-df212eca5353"
+  description    = "Engineering team Okta role."
+  name           = "mongo-db-prod"
+  remote_info = {
+    aws_account = {
+      account_id = 234234234234
+    }
+    aws_ec2_instance = {
+      account_id  = 234234234234
+      instance_id = "i-13f1a1e2899f9e93a"
+      region      = "us-east-2"
+    }
+    aws_eks_cluster = {
+      account_id = 234234234234
+      arn        = "arn:aws:eks:us-east-2:234234234234:cluster/testcluster"
+    }
+    aws_iam_role = {
+      account_id = 234234234234
+      arn        = "arn:aws:iam::179308207300:role/MyRole"
+    }
+    aws_permission_set = {
+      account_id = 234234234234
+      arn        = "arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9"
+    }
+    aws_rds_instance = {
+      account_id  = 234234234234
+      instance_id = "demo-mysql-db"
+      region      = "us-east-2"
+      resource_id = "db-AOO8V0XUCNU13XLZXQDQRSN0NQ"
+    }
+    gcp_big_query_dataset = {
+      dataset_id = "example-dataset-898931321"
+      project_id = "example-project-898931321"
+    }
+    gcp_big_query_table = {
+      dataset_id = "example-dataset-898931321"
+      project_id = "example-project-898931321"
+      table_id   = "example-table-898931321"
+    }
+    gcp_bucket = {
+      bucket_id = "example-bucket-898931321"
+    }
+    gcp_compute_instance = {
+      instance_id = "example-instance-898931321"
+      project_id  = "example-project-898931321"
+      zone        = "us-central1-a"
+    }
+    gcp_folder = {
+      folder_id = "folder/898931321"
+    }
+    gcp_gke_cluster = {
+      cluster_name = "example-cluster-898931321"
+    }
+    gcp_organization = {
+      organization_id = "organizations/898931321"
+    }
+    gcp_project = {
+      project_id = "example-project-898931321"
+    }
+    gcp_sql_instance = {
+      instance_id = "example-sql-898931321"
+      project_id  = "example-project-898931321"
+    }
+    github_repo = {
+      repo_name = "Opal Security"
+    }
+    gitlab_project = {
+      project_id = 898931321
+    }
+    okta_app = {
+      app_id = "a9dfas0f678asdf67867"
+    }
+    okta_custom_role = {
+      role_id = "a9dfas0f678asdf67867"
+    }
+    okta_standard_role = {
+      role_type = "ORG_ADMIN"
+    }
+    pagerduty_role = {
+      role_name = "owner"
+    }
+    salesforce_permission_set = {
+      permission_set_id = "0PS5Y090202wOV7WAM"
+    }
+    salesforce_profile = {
+      profile_id      = "0PS5Y090202wOV7WAM"
+      user_license_id = "1005Y030081Qb5XJHS"
+    }
+    salesforce_role = {
+      role_id = "0PS5Y090202wOV7WAM"
+    }
+    teleport_role = {
+      role_name = "admin_role"
+    }
+  }
+  request_configurations = [
+    {
+      allow_requests = true
+      auto_approval  = false
+      condition = {
+        group_ids = [
+          "9fd9b2ef-7450-42b5-921a-c42a65ac9baa"
+        ]
+        role_remote_ids = [
+          "..."
+        ]
+      }
+      max_duration           = 120
+      priority               = 1
+      recommended_duration   = 120
+      request_template_id    = "06851574-e50d-40ca-8c78-f72ae6ab4304"
+      require_mfa_to_request = false
+      require_support_ticket = false
+      reviewer_stages = [
         {
-            allow_requests = true
-            auto_approval = false
-            condition = {
-                group_ids = {
-                    "caf8a4c7-ec57-4b81-a172-8cd3687b3ad9",
-                }
-                role_remote_ids = {
-                    "...",
-                }
-            }
-            max_duration = 120
-            priority = 1
-            recommended_duration = 120
-            request_template_id = "06851574-e50d-40ca-8c78-f72ae6ab4304"
-            require_mfa_to_request = false
-            require_support_ticket = false
-            reviewer_stages = [
-                {
-                    operator = "AND"
-                    owner_ids = {
-                        "66c2bdfc-b3e7-4464-ae94-bc89fbd03a92",
-                    }
-                    require_admin_approval = false
-                    require_manager_approval = false
-                },
-            ]
-        },
-    }
-            require_mfa_to_approve = false
-            require_mfa_to_connect = false
-            resource_type = "AWS_IAM_ROLE"
-            visibility = "GLOBAL"
-            visibility_group_ids = {
-        "dda2041a-0d76-41a9-b988-b1ee194539e3",
-    }
+          operator = "AND"
+          owner_ids = [
+            "c117f3d8-d7dc-4277-9169-34f44f3229a2"
+          ]
+          require_admin_approval   = false
+          require_manager_approval = false
         }
+      ]
+    }
+  ]
+  require_mfa_to_approve = false
+  require_mfa_to_connect = false
+  resource_type          = "AWS_IAM_ROLE"
+  ticket_propagation = {
+    enabled_on_grant      = false
+    enabled_on_revocation = false
+    ticket_project_id     = "...my_ticket_project_id..."
+    ticket_provider       = "LINEAR"
+  }
+  visibility = "GLOBAL"
+  visibility_group_ids = [
+    "c4260f5e-1495-4c6c-b58d-78f194b678a9"
+  ]
+}
 ```
 
 <!-- schema generated by tfplugindocs -->
@@ -66,7 +164,7 @@ resource "opal_resource" "my_resource" {
 - `app_id` (String) The ID of the app for the resource. Requires replacement if changed.
 - `name` (String) The name of the remote resource.
 - `request_configurations` (Attributes Set) A list of configurations for requests to this resource. If not provided, the default request configuration will be used. (see [below for nested schema](#nestedatt--request_configurations))
-- `resource_type` (String) The type of the resource. Requires replacement if changed. ; must be one of ["AWS_IAM_ROLE", "AWS_EC2_INSTANCE", "AWS_EKS_CLUSTER", "AWS_RDS_POSTGRES_INSTANCE", "AWS_RDS_MYSQL_INSTANCE", "AWS_ACCOUNT", "AWS_SSO_PERMISSION_SET", "CUSTOM", "GCP_BUCKET", "GCP_COMPUTE_INSTANCE", "GCP_FOLDER", "GCP_GKE_CLUSTER", "GCP_PROJECT", "GCP_CLOUD_SQL_POSTGRES_INSTANCE", "GCP_CLOUD_SQL_MYSQL_INSTANCE", "GIT_HUB_REPO", "GIT_LAB_PROJECT", "GOOGLE_WORKSPACE_ROLE", "MONGO_INSTANCE", "MONGO_ATLAS_INSTANCE", "OKTA_APP", "OKTA_ROLE", "OPAL_ROLE", "PAGERDUTY_ROLE", "TAILSCALE_SSH", "SALESFORCE_PERMISSION_SET", "SALESFORCE_PROFILE", "SALESFORCE_ROLE", "WORKDAY_ROLE", "MYSQL_INSTANCE", "MARIADB_INSTANCE", "TELEPORT_ROLE"]
+- `resource_type` (String) The type of the resource. must be one of ["AWS_IAM_ROLE", "AWS_EC2_INSTANCE", "AWS_EKS_CLUSTER", "AWS_RDS_POSTGRES_INSTANCE", "AWS_RDS_MYSQL_INSTANCE", "AWS_ACCOUNT", "AWS_SSO_PERMISSION_SET", "CUSTOM", "GCP_BUCKET", "GCP_COMPUTE_INSTANCE", "GCP_FOLDER", "GCP_GKE_CLUSTER", "GCP_PROJECT", "GCP_CLOUD_SQL_POSTGRES_INSTANCE", "GCP_CLOUD_SQL_MYSQL_INSTANCE", "GIT_HUB_REPO", "GIT_LAB_PROJECT", "GOOGLE_WORKSPACE_ROLE", "MONGO_INSTANCE", "MONGO_ATLAS_INSTANCE", "OKTA_APP", "OKTA_ROLE", "OPAL_ROLE", "PAGERDUTY_ROLE", "TAILSCALE_SSH", "SALESFORCE_PERMISSION_SET", "SALESFORCE_PROFILE", "SALESFORCE_ROLE", "WORKDAY_ROLE", "MYSQL_INSTANCE", "MARIADB_INSTANCE", "TELEPORT_ROLE"]; Requires replacement if changed.
 - `visibility` (String) The visibility level of the entity. must be one of ["GLOBAL", "LIMITED"]
 
 ### Optional
@@ -114,7 +212,7 @@ Optional:
 
 Optional:
 
-- `operator` (String) The operator of the reviewer stage. Admin and manager approval are also treated as reviewers. must be one of ["AND", "OR"]; Default: "AND"
+- `operator` (String) The operator of the reviewer stage. Admin and manager approval are also treated as reviewers. Default: "AND"; must be one of ["AND", "OR"]
 - `owner_ids` (Set of String) Not Null
 - `require_admin_approval` (Boolean) Whether this reviewer stage should require admin approval.
 - `require_manager_approval` (Boolean) Whether this reviewer stage should require manager approval. Not Null
@@ -157,7 +255,7 @@ Optional:
 
 Optional:
 
-- `account_id` (String) The id of the AWS account. Requires replacement if changed. ; Not Null
+- `account_id` (String) The id of the AWS account. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--aws_ec2_instance"></a>
@@ -166,8 +264,8 @@ Optional:
 Optional:
 
 - `account_id` (String) The id of the AWS account. Required for AWS Organizations. Requires replacement if changed.
-- `instance_id` (String) The instanceId of the EC2 instance. Requires replacement if changed. ; Not Null
-- `region` (String) The region of the EC2 instance. Requires replacement if changed. ; Not Null
+- `instance_id` (String) The instanceId of the EC2 instance. Not Null; Requires replacement if changed.
+- `region` (String) The region of the EC2 instance. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--aws_eks_cluster"></a>
@@ -176,7 +274,7 @@ Optional:
 Optional:
 
 - `account_id` (String) The id of the AWS account. Required for AWS Organizations. Requires replacement if changed.
-- `arn` (String) The ARN of the EKS cluster. Requires replacement if changed. ; Not Null
+- `arn` (String) The ARN of the EKS cluster. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--aws_iam_role"></a>
@@ -185,7 +283,7 @@ Optional:
 Optional:
 
 - `account_id` (String) The id of the AWS account. Required for AWS Organizations. Requires replacement if changed.
-- `arn` (String) The ARN of the IAM role. Requires replacement if changed. ; Not Null
+- `arn` (String) The ARN of the IAM role. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--aws_permission_set"></a>
@@ -193,8 +291,8 @@ Optional:
 
 Optional:
 
-- `account_id` (String) The ID of an AWS account to which this permission set is provisioned. Requires replacement if changed. ; Not Null
-- `arn` (String) The ARN of the permission set. Requires replacement if changed. ; Not Null
+- `account_id` (String) The ID of an AWS account to which this permission set is provisioned. Not Null; Requires replacement if changed.
+- `arn` (String) The ARN of the permission set. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--aws_rds_instance"></a>
@@ -203,9 +301,9 @@ Optional:
 Optional:
 
 - `account_id` (String) The id of the AWS account. Required for AWS Organizations. Requires replacement if changed.
-- `instance_id` (String) The instanceId of the RDS instance. Requires replacement if changed. ; Not Null
-- `region` (String) The region of the RDS instance. Requires replacement if changed. ; Not Null
-- `resource_id` (String) The resourceId of the RDS instance. Requires replacement if changed. ; Not Null
+- `instance_id` (String) The instanceId of the RDS instance. Not Null; Requires replacement if changed.
+- `region` (String) The region of the RDS instance. Not Null; Requires replacement if changed.
+- `resource_id` (String) The resourceId of the RDS instance. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_big_query_dataset"></a>
@@ -213,8 +311,8 @@ Optional:
 
 Optional:
 
-- `dataset_id` (String) The id of the dataset. Requires replacement if changed. ; Not Null
-- `project_id` (String) The id of the project the dataset is in. Requires replacement if changed. ; Not Null
+- `dataset_id` (String) The id of the dataset. Not Null; Requires replacement if changed.
+- `project_id` (String) The id of the project the dataset is in. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_big_query_table"></a>
@@ -222,9 +320,9 @@ Optional:
 
 Optional:
 
-- `dataset_id` (String) The id of the dataset the table is in. Requires replacement if changed. ; Not Null
-- `project_id` (String) The id of the project the table is in. Requires replacement if changed. ; Not Null
-- `table_id` (String) The id of the table. Requires replacement if changed. ; Not Null
+- `dataset_id` (String) The id of the dataset the table is in. Not Null; Requires replacement if changed.
+- `project_id` (String) The id of the project the table is in. Not Null; Requires replacement if changed.
+- `table_id` (String) The id of the table. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_bucket"></a>
@@ -232,7 +330,7 @@ Optional:
 
 Optional:
 
-- `bucket_id` (String) The id of the bucket. Requires replacement if changed. ; Not Null
+- `bucket_id` (String) The id of the bucket. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_compute_instance"></a>
@@ -240,9 +338,9 @@ Optional:
 
 Optional:
 
-- `instance_id` (String) The id of the instance. Requires replacement if changed. ; Not Null
-- `project_id` (String) The id of the project the instance is in. Requires replacement if changed. ; Not Null
-- `zone` (String) The zone the instance is in. Requires replacement if changed. ; Not Null
+- `instance_id` (String) The id of the instance. Not Null; Requires replacement if changed.
+- `project_id` (String) The id of the project the instance is in. Not Null; Requires replacement if changed.
+- `zone` (String) The zone the instance is in. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_folder"></a>
@@ -250,7 +348,7 @@ Optional:
 
 Optional:
 
-- `folder_id` (String) The id of the folder. Requires replacement if changed. ; Not Null
+- `folder_id` (String) The id of the folder. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_gke_cluster"></a>
@@ -258,7 +356,7 @@ Optional:
 
 Optional:
 
-- `cluster_name` (String) The name of the GKE cluster. Requires replacement if changed. ; Not Null
+- `cluster_name` (String) The name of the GKE cluster. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_organization"></a>
@@ -266,7 +364,7 @@ Optional:
 
 Optional:
 
-- `organization_id` (String) The id of the organization. Requires replacement if changed. ; Not Null
+- `organization_id` (String) The id of the organization. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_project"></a>
@@ -274,7 +372,7 @@ Optional:
 
 Optional:
 
-- `project_id` (String) The id of the project. Requires replacement if changed. ; Not Null
+- `project_id` (String) The id of the project. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gcp_sql_instance"></a>
@@ -282,8 +380,8 @@ Optional:
 
 Optional:
 
-- `instance_id` (String) The id of the SQL instance. Requires replacement if changed. ; Not Null
-- `project_id` (String) The id of the project the instance is in. Requires replacement if changed. ; Not Null
+- `instance_id` (String) The id of the SQL instance. Not Null; Requires replacement if changed.
+- `project_id` (String) The id of the project the instance is in. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--github_repo"></a>
@@ -291,7 +389,7 @@ Optional:
 
 Optional:
 
-- `repo_name` (String) The name of the repository. Requires replacement if changed. ; Not Null
+- `repo_name` (String) The name of the repository. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--gitlab_project"></a>
@@ -299,7 +397,7 @@ Optional:
 
 Optional:
 
-- `project_id` (String) The id of the project. Requires replacement if changed. ; Not Null
+- `project_id` (String) The id of the project. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--okta_app"></a>
@@ -307,7 +405,7 @@ Optional:
 
 Optional:
 
-- `app_id` (String) The id of the app. Requires replacement if changed. ; Not Null
+- `app_id` (String) The id of the app. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--okta_custom_role"></a>
@@ -315,7 +413,7 @@ Optional:
 
 Optional:
 
-- `role_id` (String) The id of the custom role. Requires replacement if changed. ; Not Null
+- `role_id` (String) The id of the custom role. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--okta_standard_role"></a>
@@ -323,7 +421,7 @@ Optional:
 
 Optional:
 
-- `role_type` (String) The type of the standard role. Requires replacement if changed. ; Not Null
+- `role_type` (String) The type of the standard role. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--pagerduty_role"></a>
@@ -331,7 +429,7 @@ Optional:
 
 Optional:
 
-- `role_name` (String) The name of the role. Requires replacement if changed. ; Not Null
+- `role_name` (String) The name of the role. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--salesforce_permission_set"></a>
@@ -339,7 +437,7 @@ Optional:
 
 Optional:
 
-- `permission_set_id` (String) The id of the permission set. Requires replacement if changed. ; Not Null
+- `permission_set_id` (String) The id of the permission set. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--salesforce_profile"></a>
@@ -347,8 +445,8 @@ Optional:
 
 Optional:
 
-- `profile_id` (String) The id of the permission set. Requires replacement if changed. ; Not Null
-- `user_license_id` (String) The id of the user license. Requires replacement if changed. ; Not Null
+- `profile_id` (String) The id of the permission set. Not Null; Requires replacement if changed.
+- `user_license_id` (String) The id of the user license. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--salesforce_role"></a>
@@ -356,7 +454,7 @@ Optional:
 
 Optional:
 
-- `role_id` (String) The id of the role. Requires replacement if changed. ; Not Null
+- `role_id` (String) The id of the role. Not Null; Requires replacement if changed.
 
 
 <a id="nestedatt--remote_info--teleport_role"></a>
@@ -364,7 +462,7 @@ Optional:
 
 Optional:
 
-- `role_name` (String) The name role. Requires replacement if changed. ; Not Null
+- `role_name` (String) The name role. Not Null; Requires replacement if changed.
 
 
 

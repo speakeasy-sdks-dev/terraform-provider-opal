@@ -151,7 +151,7 @@ func (r *ConfigurationTemplateResource) Schema(ctx context.Context, req resource
 										Computed:    true,
 										Optional:    true,
 										Default:     stringdefault.StaticString("AND"),
-										Description: `The operator of the reviewer stage. Admin and manager approval are also treated as reviewers. must be one of ["AND", "OR"]; Default: "AND"`,
+										Description: `The operator of the reviewer stage. Admin and manager approval are also treated as reviewers. Default: "AND"; must be one of ["AND", "OR"]`,
 										Validators: []validator.String{
 											stringvalidator.OneOf(
 												"AND",
@@ -241,10 +241,10 @@ func (r *ConfigurationTemplateResource) Schema(ctx context.Context, req resource
 					},
 					"visibility_group_ids": schema.SetAttribute{
 						Computed: true,
+						Optional: true,
 						PlanModifiers: []planmodifier.Set{
 							speakeasy_setplanmodifier.SuppressDiff(speakeasy_setplanmodifier.ExplicitSuppress),
 						},
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 				},

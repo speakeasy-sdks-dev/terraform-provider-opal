@@ -49,7 +49,7 @@ Read-Only:
 - `enabled_on_grant` (Boolean)
 - `enabled_on_revocation` (Boolean)
 - `ticket_project_id` (String)
-- `ticket_provider` (String) The third party ticketing platform provider. must be one of ["JIRA", "LINEAR", "SERVICE_NOW"]
+- `ticket_provider` (String) The third party ticketing platform provider.
 
 
 <a id="nestedatt--results--visibility"></a>
@@ -57,5 +57,5 @@ Read-Only:
 
 Read-Only:
 
-- `visibility` (String) The visibility level of the entity. must be one of ["GLOBAL", "LIMITED"]
+- `visibility` (String) The visibility level of the entity.
 - `visibility_group_ids` (Set of String)

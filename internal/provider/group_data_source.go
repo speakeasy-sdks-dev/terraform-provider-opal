@@ -81,7 +81,7 @@ func (r *GroupDataSource) Schema(ctx context.Context, req datasource.SchemaReque
 			},
 			"group_type": schema.StringAttribute{
 				Computed:    true,
-				Description: `The type of the group. must be one of ["ACTIVE_DIRECTORY_GROUP", "AWS_SSO_GROUP", "DUO_GROUP", "GIT_HUB_TEAM", "GIT_LAB_GROUP", "GOOGLE_GROUPS_GROUP", "LDAP_GROUP", "OKTA_GROUP", "OPAL_GROUP", "AZURE_AD_SECURITY_GROUP", "AZURE_AD_MICROSOFT_365_GROUP"]`,
+				Description: `The type of the group.`,
 			},
 			"id": schema.StringAttribute{
 				Required:    true,
@@ -112,13 +112,12 @@ func (r *GroupDataSource) Schema(ctx context.Context, req datasource.SchemaReque
 								},
 								"third_party_provider": schema.StringAttribute{
 									Computed:    true,
-									Description: `The third party provider of the message channel. must be one of ["SLACK"]`,
+									Description: `The third party provider of the message channel.`,
 								},
 							},
 						},
 					},
 				},
-				Description: `The audit and reviewer message channels attached to the group.`,
 			},
 			"name": schema.StringAttribute{
 				Computed:    true,
@@ -141,10 +140,9 @@ func (r *GroupDataSource) Schema(ctx context.Context, req datasource.SchemaReque
 					},
 					"third_party_provider": schema.StringAttribute{
 						Computed:    true,
-						Description: `The third party provider of the on call schedule. must be one of ["OPSGENIE", "PAGER_DUTY"]`,
+						Description: `The third party provider of the on call schedule.`,
 					},
 				},
-				Description: `The on call schedules attached to the group.`,
 			},
 			"remote_info": schema.SingleNestedAttribute{
 				Computed: true,
@@ -303,7 +301,7 @@ func (r *GroupDataSource) Schema(ctx context.Context, req datasource.SchemaReque
 								Attributes: map[string]schema.Attribute{
 									"operator": schema.StringAttribute{
 										Computed:    true,
-										Description: `The operator of the reviewer stage. Admin and manager approval are also treated as reviewers. must be one of ["AND", "OR"]`,
+										Description: `The operator of the reviewer stage. Admin and manager approval are also treated as reviewers.`,
 									},
 									"owner_ids": schema.SetAttribute{
 										Computed:    true,
@@ -331,7 +329,7 @@ func (r *GroupDataSource) Schema(ctx context.Context, req datasource.SchemaReque
 			},
 			"visibility": schema.StringAttribute{
 				Computed:    true,
-				Description: `The visibility level of the entity. must be one of ["GLOBAL", "LIMITED"]`,
+				Description: `The visibility level of the entity.`,
 			},
 			"visibility_group_ids": schema.SetAttribute{
 				Computed:    true,

@@ -14,7 +14,7 @@ features:
   terraform:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
-    constsAndDefaults: 0.1.4
+    constsAndDefaults: 0.2.0
     core: 3.24.15
     deprecations: 2.81.1
     envVarSecurityUsage: 0.1.0

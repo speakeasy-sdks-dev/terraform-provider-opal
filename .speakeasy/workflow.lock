@@ -1,4 +1,4 @@
-speakeasyVersion: 1.405.10
+speakeasyVersion: internal
 sources:
     opal-terraform-provider:
         sourceNamespace: opal-terraform-provider

@@ -18,7 +18,7 @@ features:
     core: 3.25.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.1.0
-    globalSecurity: 2.81.8
+    globalSecurity: 2.81.9
     globalServerURLs: 2.82.1
     ignores: 2.81.1
     nameOverrides: 2.81.2
